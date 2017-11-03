@@ -11,7 +11,7 @@ import {MarkdownService} from 'angular2-markdown';
 @Component({
     selector: 'app-blog-editor',
     templateUrl: './blog-editor.component.html',
-    styleUrls: ['./blog-editor.component.css']
+    styleUrls: ['./blog-editor.component.scss']
 })
 export class BlogEditorComponent implements OnInit {
 
