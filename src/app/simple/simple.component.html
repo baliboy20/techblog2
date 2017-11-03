@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>
+    <mat-form-field>
+      <input type="text"
+             matInput
+             placeholder="Search ..."
+             (keyup)="doSearch($event)"
+             (click)="onSearchClicked($event)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+
+    <button mat-raised-button
+            color="primary"
+            (click)="doListAll()">
+      list all
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+
+    <div *ngFor="let blog of blogs; let i = index">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <button mat-button
+                  (click)="select(i)">
+            {{blog.title}}
+          </button>
+          <!--<span>{{blog.id}}</span>-->
+          <span>
+              <button mat-icon-button
+                      mat-tooltip="Delete selected"
+                      (click)="doDelete(blog.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+            </span>
+        </mat-expansion-panel-header>
+        <app-blog-editor
+          (insert)="doInsert_v1($event)"
+          (update)="doUpdate_v1($event)"
+          #blogEditor>
+        </app-blog-editor>
+      </mat-expansion-panel>
+    </div>
+  </mat-card-content>
+</mat-card>
