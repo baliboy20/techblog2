@@ -12,7 +12,7 @@
 
     <button mat-raised-button
             color="primary"
-            (click)="doListAll()">
+            (click)="doListAll($event)">
       list all
     </button>
   </mat-card-title>
@@ -42,4 +42,12 @@
       </mat-expansion-panel>
     </div>
   </mat-card-content>
+</mat-card>
+
+<p></p>
+<mat-card>
+  <mat-card-title>
+    <h2>{{title}}</h2>
+  </mat-card-title>
+<button mat-raised-button color="accent" (click)="onClickd">test button</button>
 </mat-card>

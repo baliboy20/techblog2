@@ -1,4 +1,17 @@
+<style>
+    .mat-icon:first-child {
+        padding: 10px;
+    }
+
+    /*.mat-icon:hover {*/
+    /*background-color: gainsboro;*/
+    /*border-radius: 4px;*/
+
+    /*}*/
+</style>
+
 <mat-sidenav-container>
+    <!-- DISPLAY LIST OF BLOGS-->
     <mat-sidenav #sidenav
                  disable-close="true"
                  mode="over"
@@ -11,17 +24,15 @@
                 (click)="sidenav.close()">
             <mat-icon>remove</mat-icon>
         </button>
-        <button (click)="addItemAction()"
-                mat-raised-button
-                color="accent">
-            INSERT BLOG
-        </button>
 
-        <mat-grid-list cols="12"
+        <mat-grid-list cols="10"
                        [rowHeight]="50"
-                       style="background-color: palegreen;">
+                       style="background-color: whitesmoke">
+            <!--SPACER-->
+            <mat-grid-tile colspan="10"></mat-grid-tile>
             <ng-container *ngFor="let itm of blogs; let idx = index">
-                <mat-grid-tile colspan="4"
+                <mat-grid-tile colspan="1"></mat-grid-tile>
+                <mat-grid-tile colspan="2"
                                rowspan="1"
                                style=" display: flex;
                                      flex-flow: row nowrap;
@@ -30,30 +41,39 @@
                     <button mat-button
                             (click)="_itmSelected(itm)"
                             style="  font-size: 1.5rem;
-                           font-family: Roboto;
-                           font-weight: 100;"
+                                     font-family: Roboto;
+                                     margin-right: auto;
+                                     font-weight: 100;"
                             type="button">
                         {{itm.title}}
                     </button>
                 </mat-grid-tile>
                 <mat-grid-tile colspan="1">
-                    <button mat-icon-button
-                            (click)="commit_delete(itm.id)">
-                        <mat-icon mat-tooltip="delete">
-                            clear_circle
-                        </mat-icon>
-                    </button>
-                </mat-grid-tile>
-                <mat-grid-tile colspan="1">
+                    <a mat-icon-button
+                       (click)="confirmDelete(itm)">
+                        <mat-icon>clear_circle</mat-icon>
+                    </a>
                     <a mat-icon-button
                        (click)="switchStateEdit(itm)">
                         <mat-icon>create</mat-icon>
                     </a>
                 </mat-grid-tile>
-                <mat-grid-tile colspan="4"></mat-grid-tile>
+                <mat-grid-tile colspan="6"></mat-grid-tile>
             </ng-container>
+            <!--SPACER-->
+            <mat-grid-tile colspan="10"></mat-grid-tile>
+            <mat-grid-tile colspan="7" style="overflow: visible">
+                <button (click)="addItemAction()"
+                        mat-fab
+                        style=" z-index: 220; transform: translate(150px,25px)"
+                        color="accent">
+                    INSERT
+                </button>
+            </mat-grid-tile>
         </mat-grid-list>
     </mat-sidenav>
+
+    <!--DISPLAY BLOG EDITOR -->
     <button type="button"
             mat-icon-button
             style="padding-top: 10px;"

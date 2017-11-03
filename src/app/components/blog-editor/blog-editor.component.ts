@@ -14,25 +14,17 @@ import {MarkdownService} from 'angular2-markdown';
     styleUrls: ['./blog-editor.component.css']
 })
 export class BlogEditorComponent implements OnInit {
-    get markedContent(): string {
-        return this._markedContent;
-    }
 
-    set markedContent(value: string) {
-        console.log('action content changed', value);
-        // this._markedContent = this.markdown.compile(value);
-        // setTimeout(a => {
-        //   this.rnd.setProperty(this.viewscreen.nativeElement, 'innerHTML', this._markedContent);
-        // }, 1);
-    }
-    private _markedContent;
     private num = '\u2714';
     private blog = BlogItemFactory.instanceOf();
     @ViewChild('viewscreen') viewscreen: ElementRef;
     @Input() insertNotUpdate = false;
-    @Input() set selectedBlog(blog: BlogItem) {
-        this.blog = blog;
-        // this.markedContent = blog.content;
+
+    @Input()
+    set selectedBlog(blog: BlogItem) {
+
+        this.blog = BlogItemFactory.clone(blog);
+        this.transformMdToHtml(this.blog.content);
     }
 
     @Output() insert: EventEmitter<BlogItem> = new EventEmitter();
@@ -79,8 +71,13 @@ export class BlogEditorComponent implements OnInit {
     }
 
     actionContentChanged(e) {
-        console.log('action content changed', e.target.value);
-        this.blog.content = e.target.value;
-        this.markedContent = e.target.value;
+        console.log('action content changed ......', this.viewscreen, this.rnd);
+        this.transformMdToHtml(e.target.value);
+    }
+
+    transformMdToHtml(mdStr: string) {
+        const htmlStr  = this.markdown.compile(mdStr);
+        console.log('html', htmlStr);
+        this.rnd.setProperty(this.viewscreen.nativeElement,'innerHTML', htmlStr);
     }
 }

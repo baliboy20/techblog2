@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SideListComponent } from './side-list.component';
+import {ConfirmDeleteDialog, SideListComponent} from './side-list.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MaterialsModule} from '../materials/materials.module';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,7 +19,8 @@ export const SideListRoute: Routes = [
     HttpClientModule,
     BlogEditorModule,
   ],
-  declarations: [SideListComponent, FlatternTagPipe],
-  providers: [BlogHttpService]
+  declarations: [SideListComponent, FlatternTagPipe, ConfirmDeleteDialog],
+  providers: [BlogHttpService],
+    entryComponents:[ConfirmDeleteDialog]
 })
 export class SideListModule { }
