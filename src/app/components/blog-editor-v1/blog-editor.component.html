@@ -1,0 +1,90 @@
+
+        <mat-tab-group>
+            <mat-tab label="two">
+                <ng-template mat-tab-label>
+                    <span style="font-size: 2rem; color: limegreen"> {{'\u2714'}}   </span>
+                </ng-template>
+
+                <!--Edit screen-->
+                <mat-card>
+                    <div>
+                        <div>
+                            <mat-form-field>
+                                <input type="text"
+                                       matInput
+                                       [(ngModel)]="blog.title"
+                                       placeholder="Title"
+                                       style="background-color: whitesmoke">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field style="width: 95%">
+        <textarea matInput
+                  (change)="actionContentChanged($event)"
+                  placeholder="Content"
+                  style="background-color: whitesmoke;
+                  padding: 35px"
+                  [ngModel]="blog.content"
+                  rows="10">
+        </textarea>
+                                <!--(ngModel)="actionContentChanged($event)"-->
+                                <!-- (cdkObserveContent)="actionContentChanged($event)"-->
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-card>
+                        <mat-form-field style="width: 100%">
+                            <mat-chip-list #chiplist>
+                                <mat-chip *ngFor="let tag of blog.tags; let idx = index"
+                                          [selectable]="true"
+                                          (remove)="remove($event)"
+                                          [removable]="true">
+                                    {{tag}}
+                                    <button type="button"
+                                            mat-icon-button
+                                            (click)="doRemoveTag(idx)">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                            </mat-chip-list>
+                            <input type="text"
+                                   [matChipInputSeparatorKeyCodes]="[188, 13]"
+                                   [matChipInputAddOnBlur]="true"
+                                   (matChipInputTokenEnd)="doAddTag($event)"
+                                   [matChipInputFor]="chiplist" placeholder="New tag...">
+                        </mat-form-field>
+
+                        <mat-card-actions>
+                            <ng-container *ngIf="insertNotUpdate; else insertTmpl">
+                                <button mat-raised-button
+                                        color="primary"
+                                        (click)="actionInsert($event)">INSERT
+                                </button>
+                            </ng-container>
+                            <ng-template #insertTmpl>
+                                <button mat-raised-button
+                                        color="accent"
+                                        (click)="actionUpdate($event)">UPDATE
+                                </button>
+                            </ng-template>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-card>
+            </mat-tab>
+
+            <!-- FORMATTED SCREEN -->
+            <mat-tab label="dd"
+                     #dd
+                     backgroundColor="primary">
+                <ng-template mat-tab-label>
+      <span style="font-size: 2rem;
+            color:slategray;">
+            {{'\u270e'}}
+      </span>
+                </ng-template>
+                <div #viewscreen id="idViewscreen">
+
+                </div>
+                hello dolly
+            </mat-tab>
+        </mat-tab-group>

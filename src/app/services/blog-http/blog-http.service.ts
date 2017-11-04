@@ -52,4 +52,10 @@ export class BlogHttpService {
             .do(a => console.log('data returned', a));
     }
 
+    findById(id: string): Observable<Object> {
+        const url = this.urls.get('findOne').concat(id);
+        return this.BlogHttp.get(url)
+            .do(a => console.log('data returned', a));
+    }
+
 }

@@ -9,10 +9,11 @@ import {BlogEditorComponent} from "../components/blog-editor/blog-editor.compone
 import {BlogEditorModule} from "../components/blog-editor/blog-editor.module";
 
 const routedRoute: Routes = [
-    {path: 'routedlist', component: BlogListComponent,
+    {path: 'routedlist', component: RoutedListComponent,
         children :[
-            {path:'list', component: RoutedListComponent},
             {path:'editor', component: BlogEditorComponent},
+            {path:'list', component:BlogListComponent },
+            {path:'', redirectTo: 'list', pathMatch: 'full'}
         ]}
 ]
 

@@ -8,6 +8,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSidenav} from '@angular/mat
 import {BlogItem, BlogItemFactory} from "../../model/BlogItem";
 import {BlogEditorComponent} from "../blog-editor/blog-editor.component";
 import {BlogHttpService} from "../../services/blog-http/blog-http.service";
+import {Params, Router} from "@angular/router";
 
 
 
@@ -45,7 +46,7 @@ export class BlogListComponent implements OnInit {
 
     @ViewChild(BlogEditorComponent) editor: BlogEditorComponent;
 
-    constructor(public blogDb: BlogHttpService,
+    constructor(public blogDb: BlogHttpService, private router: Router,
                 private dialog: MatDialog) {
     }
 
@@ -74,8 +75,13 @@ export class BlogListComponent implements OnInit {
         this.onSubscription(obsr);
     }
 
-    switchStateEdit(itm) {
-        this.editor.insertNotUpdate = false;
+    routeToEditor(itm) {
+        // this.editor.insertNotUpdate = false;
+        this.router.navigate(['./routedlist/editor'],
+            {queryParams: {
+                id:itm.id,
+                title: itm.title
+            } } );
         this.blog = BlogItemFactory.clone(itm);
 
     }
