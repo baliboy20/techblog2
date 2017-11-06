@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSidenav} from '@angular/material';
 import {BlogEditorComponent} from '../components/blog-editor/blog-editor.component';
+import {ZzService} from "../services/zz.service";
 
 @Component({
     template: `
@@ -20,6 +21,7 @@ import {BlogEditorComponent} from '../components/blog-editor/blog-editor.compone
 })
 export class ConfirmDeleteDialog {
     constructor(public dialogRef: MatDialogRef<ConfirmDeleteDialog>,
+
                 @Inject(MAT_DIALOG_DATA) public data: any,) { }
 }
 
@@ -29,10 +31,11 @@ export class ConfirmDeleteDialog {
 @Component({
     selector: 'app-side-list',
     templateUrl: './side-list.component.html',
-    styleUrls: ['./side-list.component.css']
+    styleUrls: ['./side-list.component.css'],
+
 })
 export class SideListComponent implements OnInit {
-
+value;
     blogs: BlogItem[];
     blog: BlogItem = BlogItemFactory.instanceOf();
 
@@ -40,12 +43,14 @@ export class SideListComponent implements OnInit {
     @ViewChild(BlogEditorComponent) editor: BlogEditorComponent;
 
     constructor(public blogDb: BlogHttpService,
+                private zz: ZzService,
                 private dialog: MatDialog) {
     }
 
     ngOnInit() {
         this.getblogs();
         this.sidenav.open();
+        this.value = this.zz.testValue;
 
     }
 
@@ -113,6 +118,12 @@ export class SideListComponent implements OnInit {
         this.editor.insertNotUpdate = false;
         this.blog = BlogItemFactory.clone(itm);
         this.sidenav.close();
+    }
+
+    zzFindById(itm: BlogItem) {
+        console.log('Calling findBy...')
+        const call = this.blogDb.findById(itm.id);
+        call.subscribe(a => console.log('retval findby', a));
     }
 
 

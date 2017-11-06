@@ -75,14 +75,13 @@ export class BlogListComponent implements OnInit {
         this.onSubscription(obsr);
     }
 
-    routeToEditor(itm) {
+    routeToEditor(itm: BlogItem) {
         // this.editor.insertNotUpdate = false;
-        this.router.navigate(['./routedlist/editor'],
-            {queryParams: {
-                id:itm.id,
-                title: itm.title
-            } } );
-        this.blog = BlogItemFactory.clone(itm);
+
+        const qp = {queryParams: {id: itm.id, productOrder: 'ApplesOranges'}};
+        console.log("Route to Editor", qp);
+        this.router.navigate(['./routedlist/editor', itm.id]);
+        // this.blog = BlogItemFactory.clone(itm);
 
     }
 

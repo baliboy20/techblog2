@@ -20,7 +20,6 @@ export const SideListRoute: Routes = [
     BlogEditorModule,
   ],
   declarations: [SideListComponent, FlatternTagPipe, ConfirmDeleteDialog],
-  providers: [BlogHttpService],
     entryComponents:[ConfirmDeleteDialog]
 })
 export class SideListModule { }

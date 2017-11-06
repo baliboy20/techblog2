@@ -13,7 +13,7 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 
 @Component({
     selector: 'app-blog-editor-v1',
-    templateUrl: './blog-editor.v1.component.html',
+    templateUrl:'./blog-editor.v1.component.html',
     styleUrls: ['./blog-editor.v1.component.scss']
 })
 export class BlogEditorComponentV1 implements OnInit {
@@ -34,17 +34,31 @@ export class BlogEditorComponentV1 implements OnInit {
 
     constructor(private markdown: MarkdownService,
                 private rnd: Renderer2,
+                private acr: ActivatedRoute,
                 private router: Router,
                 private service: BlogHttpService,
-                private acr: ActivatedRouteSnapshot,
-                private cdr: ChangeDetectorRef) {
-       console.log('Blog editor v1', this.acr);
+
+    ) {
+        console.log('data', this.acr.data)
+
 
     }
 
+    // constructor(private markdown: MarkdownService,
+    //             private rnd: Renderer2,
+    //             private router: Router,
+    //             private service: BlogHttpService,
+    //             private acr: ActivatedRouteSnapshot,
+    //             private cdr: ChangeDetectorRef) {
+    //     //console.log('Blog editor v1', this.acr);
+    //
+    // }
+
     ngOnInit() {
-        const id = this.acr.queryParams['id']
-        this.service.findBy(id);
+
+         this.acr.data
+             .map(a => a.blogItem)
+             .subscribe(a => this.blog = a);
     }
 
     doAddTag(event: { input: HTMLInputElement, value: any }) {
@@ -69,12 +83,17 @@ export class BlogEditorComponentV1 implements OnInit {
         //this.update.emit(this.blog);
     }
 
-    actionInsert(event: Event) {
-        event.stopImmediatePropagation();
-        event.stopPropagation();
-        event.preventDefault();
-        console.log('do insrt');
+    actionInsert(e: Event) {
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        e.preventDefault();
+
         // this.insert.emit(this.blog);
+    }
+
+    actionCancel(e) {
+        console.log('Action Cancelled');
+        this.router.navigate(['routedlist', 'list']);
     }
 
     actionContentChanged(e) {

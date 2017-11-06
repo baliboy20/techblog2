@@ -31,7 +31,7 @@ export class BlogHttpService {
     listAll(): any {
         const url = this.urls.get('listAll');
         return this.BlogHttp.get(url)
-            .do(a => console.log('data returned', a));
+            //.do(a => console.log('data returned', a));
     }
 
     update(itm: BlogItem): Observable<Object> {
@@ -49,13 +49,19 @@ export class BlogHttpService {
         const url = this.urls.get('INS_UPD');
         console.log('url ====>', url);
         return this.BlogHttp.post(url, itm)
-            .do(a => console.log('data returned', a));
+            //.do(a => console.log('data returned', a));
     }
 
     findById(id: string): Observable<Object> {
         const url = this.urls.get('findOne').concat(id);
         return this.BlogHttp.get(url)
-            .do(a => console.log('data returned', a));
+            //.do(a => console.log('data returned', a));
+    }
+
+    findByTitle(title: string): Observable<Object> {
+        const url = this.urls.get('findOne').concat('/title/',title);
+        return this.BlogHttp.get(url)
+        //.do(a => console.log('data returned', a));
     }
 
 }
