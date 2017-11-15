@@ -1,3 +1,67 @@
-:host{
-  background-color: red;
+
+.container {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+  height: 100vh;
 }
+
+.side-container {
+  background-color: whitesmoke;
+  //border: 1px dotted whitesmoke;
+  //border-radius: 5px;
+  padding: 25px;
+  flex: 1 1 15%;
+  min-height: 60%;
+}
+
+.arcticle-col {
+  flex: 1 1 57%;
+  min-height: 100vh;
+}
+
+.editor-content {
+  display: flex;
+  flex: 1 1 80%;
+  justify-content: center;
+  //background-color: orange;
+  flex-flow: row nowrap;
+  height: 100vh;
+}
+
+.side-content {
+  flex: 0 1 10px;
+}
+
+.main-content {
+  display: flex;
+  flex: 0 1 80%;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  //background-color: olivedrab;
+}
+
+.main-content-child {
+  flex: 1 0 100%;
+  //background-color: orange;
+  justify-content: flex-start;
+}
+
+mat-form-field {
+  width: 100%;
+  //background-color: whitesmoke;
+  border: 1px dotted whitesmoke;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+#idViewscreen {
+  padding: 0 20px;
+}
+
+//
+
+
+
+

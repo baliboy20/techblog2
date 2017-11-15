@@ -1,0 +1,30 @@
+<style>
+  .div {
+    display: block;
+    position: relative;
+    top: 30px;
+    left: 30px;
+    width: 400px;
+    height: 40px;
+    background-color: aquamarine;
+    opacity: 1;
+    padding:3px;
+  }
+</style>
+
+<mat-card>
+  <button type="button" mat-button (click)="reset()"> press</button>
+</mat-card>
+<div *ngFor="let i of data">
+
+  <div [@aniRoutes]="'start'"
+       (@aniRoutes.start)= "animationStarted($event)"
+       class="div">
+    officiis tempore velit voluptatibus. Dicta enim hic officiis placeat quaerat
+    voluptatibus voluptatum.
+{{i}}
+
+  </div>
+
+
+</div>

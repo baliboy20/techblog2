@@ -12,6 +12,7 @@ import {MaterialsModule} from '../../materials/materials.module';
 import {MarkdownModule} from 'angular2-markdown';
 import {ObserversModule} from '@angular/cdk/observers';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -23,7 +24,10 @@ import {ObserversModule} from '@angular/cdk/observers';
         ObserversModule,
     ],
     declarations: [BlogEditorComponent],
-    exports: [BlogEditorComponent]
+    exports: [BlogEditorComponent],
+    providers: []
+
+
 
 })
 export class BlogEditorModule {

@@ -5,6 +5,7 @@ import {MaterialsModule} from '../materials/materials.module';
 import {RouterModule, Routes} from '@angular/router';
 import {BlogEditorModule} from '../components/blog-editor/blog-editor.module';
 import {BlogEditorComponent} from '../components/blog-editor/blog-editor.component';
+import {FormsModule} from "@angular/forms";
 
 export const SimpleRoutes: Routes =
   [
@@ -15,6 +16,7 @@ export const SimpleRoutes: Routes =
   imports: [
     CommonModule,
     MaterialsModule,
+      FormsModule,
     RouterModule.forChild(SimpleRoutes),
     BlogEditorModule
   ],

@@ -1,3 +1,16 @@
 :host{
-  background-color: red;
+
+}
+
+
+.editor-container {
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr;
+
+
+ .editor-col {
+
+   background-color: #ffa100;
+ }
+
 }

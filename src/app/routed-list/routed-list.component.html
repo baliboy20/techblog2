@@ -1,4 +1,11 @@
 
-zz service: {{value}}
 
-<router-outlet></router-outlet>
+<!--<main [@routerTransition]="getState(outlet)">-->
+
+<!-- change something</main>-->
+<div class="main" [@aniRoutes]="getPage(appOutlet)"
+     (@aniRoutes.start)="animationStarted($event)">
+
+</div>
+
+<router-outlet #appOutlet="outlet"></router-outlet>

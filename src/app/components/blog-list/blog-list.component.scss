@@ -1,0 +1,57 @@
+.button-label {
+  font-weight: 100;
+  font-size: 1rem;
+  color: dimgray;
+  &:hover {
+    color: hotpink;
+  }
+}
+
+.clear-circle{
+  color: lighten(dimgray, 25%);
+  display: inline-block;
+  border: 1px solid gainsboro;
+  max-width: 25px;
+  border-radius: 50%;
+  transform: scale(.5,.5) translate(-19px,-9px);
+
+  &:hover{
+    color: hotpink;
+    border: 1px solid hotpink;
+    cursor: hand;
+    transform: scale(.6,.6) translate(-14px,-8px);
+  }
+  & > .matial-icons {
+    cursor: hand;
+  }
+}
+
+.icon-label {
+  //padding-bottom: 10px;
+  padding: 2px;
+  color: lighten(dimgray, 10%);
+  display: inline-block;
+  border: 1px dotted darken(whitesmoke, 5%);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transform: scale(.8, .8) ;
+  & span {
+    transform: translate(0px, -5px);
+  }
+
+  &:hover{
+    color: hotpink;
+    border: 1px solid darken(lightgray, 0%);
+    cursor: hand;
+    box-shadow: 0px 1px 19px 0px darken(lightgray, 5%);
+  }
+}
+.side-col {
+  background-color: whitesmoke;
+}
+
+.mid-cols {
+  background-color: white;
+  border:1px solid ghostwhite;
+}

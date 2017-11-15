@@ -6,16 +6,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialsModule} from './materials/materials.module';
 import {RouterModule, Routes} from '@angular/router';
 import {SimpleModule} from './simple/simple.module';
-import {SideListModule} from './side-list/side-list.module';
+// import {SideListModule} from './side-list/side-list.module';
 import {RoutedListModule} from './routed-list/routed-list.module';
-import {ZzFactoryService, ZzService} from "./services/zz.service";
-import {BlogHttpService} from "./services/blog-http/blog-http.service";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {AmsService} from "./services/ams.service";
+import { NgTemplateOutletExample} from './tempate-example/ng-template-example';
+import {AniModule} from "./ani/ani.module";
+
 
 export const MainRoutes: Routes = [];
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent, NgTemplateOutletExample,
     ],
     imports: [
         BrowserModule,
@@ -23,13 +26,12 @@ export const MainRoutes: Routes = [];
         BrowserAnimationsModule,
         RouterModule.forRoot(MainRoutes),
         SimpleModule,
-        SideListModule,
         RoutedListModule,
+        AniModule,
+        AngularFontAwesomeModule,
     ],
     bootstrap: [AppComponent],
-    providers:[
-        BlogHttpService,
-        {provide: ZzService, useFactory: ZzFactoryService,deps:[BlogHttpService]}]
+    providers: [AmsService]
 })
 export class AppModule {
 }

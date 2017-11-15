@@ -1,10 +1,11 @@
 
 <nav>
-  <a [routerLink]="['simple']" mat-button>Simple</a>
-  <a [routerLink]="['sidelist']" mat-button>Side List</a>
-  <a [routerLink]="['routedlist']" mat-button>Routed List</a>
+  <a  color="primary" mat-button [routerLink]="['simple']">Simple</a>
+  <a color="primary" mat-button [routerLink]="['routedlist']">Routed List</a>
+  <a color="primary" mat-button [routerLink]="['ani']">Animations</a>
 </nav>
 
+<!--<ng-template-outlet-example></ng-template-outlet-example>-->
 
 <router-outlet></router-outlet>
 

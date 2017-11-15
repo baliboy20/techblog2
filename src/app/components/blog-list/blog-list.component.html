@@ -1,47 +1,66 @@
-<mat-grid-list cols="10"
+<mat-card>
+    <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="Search ..."
+               (keyup)="onSearchClicked($event)"
+        >
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</mat-card>
+
+<mat-grid-list [cols]="totalCols"
                rowHeight="50"
                style="background-color: whitesmoke">
-  <!--SPACER-->
-  <mat-grid-tile colspan="10"></mat-grid-tile>
-  <ng-container *ngFor="let itm of blogs; let idx = index">
-    <mat-grid-tile colspan="1"></mat-grid-tile>
-    <mat-grid-tile colspan="2"
-                   rowspan="1"
-                   style=" display: flex;
-                                     flex-flow: row nowrap;
-                               justify-content: flex-start;">
+    <!--SPACER-->
+    <mat-grid-tile [colspan]="totalCols">BLOGS</mat-grid-tile>
 
-      <button mat-button
-              (click)="routeToEditor(itm)"
-              style="  font-size: 1.5rem;
-                                     font-family: Roboto;
-                                     margin-right: auto;
-                                     font-weight: 100;"
-              type="button">
-        {{itm.title}}
-      </button>
+        <ng-container *ngFor="let itm of blogs$|async as blogNum; let idx = index">
+            <mat-grid-tile [colspan]="lft" class="side-col"></mat-grid-tile>
+            <mat-grid-tile [colspan]="mid4" class="mid-cols" [@addRowTrigger]
+                           rowspan="1"
+                           style="display: flex;
+                           flex-flow: row nowrap;
+                           justify-content: flex-start;">
+
+                <button mat-button
+                        (click)="viewItemAction(itm)"
+                        type="button">
+                    <span class="button-label">{{itm.title}}</span>
+                </button>
+                <a [matTooltip]="'Delete post'"
+                   class="clear-circle"
+                   (click)="confirmDelete(itm)">
+                    <span class="material-icons">clear_circle</span>
+                </a>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="mid" class="mid-cols"  >
+                <a mat-icon-button class="icon-label"
+                   [matTooltip]="'Edit post'"
+                   (click)="updateItemAction(itm)">
+                    <span class="material-icons">create</span>
+                </a>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="rht" class="mid-cols"  ></mat-grid-tile>
+
+    </ng-container>
+    <!--SPACER-->
+    <!--<mat-grid-tile [colspan]="totalCols"></mat-grid-tile>-->
+    <mat-grid-tile [@addRowTrigger] [colspan]="3" style="overflow: visible">
+        <button (click)="addItemAction()"
+                mat-fab
+                style=" z-index: 220; transform: translate(150px,25px)"
+                color="accent">
+            INSERT
+        </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
-      <a mat-icon-button
-         (click)="confirmDelete(itm)">
-        <mat-icon>clear_circle</mat-icon>
-      </a>
-      <a mat-icon-button
-         (click)="editBlog(itm)">
-        <mat-icon>create</mat-icon>
-      </a>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="6"></mat-grid-tile>
-  </ng-container>
-  <!--SPACER-->
-  <mat-grid-tile colspan="10"></mat-grid-tile>
-  <mat-grid-tile colspan="7" style="overflow: visible">
-    <button (click)="addItemAction()"
-            mat-fab
-            style=" z-index: 220; transform: translate(150px,25px)"
-            color="accent">
-      INSERT
-    </button>
-  </mat-grid-tile>
 </mat-grid-list>
 
+<ng-template #tmpPopup>
+    <h1 mat-dailog-title>DELETE</h1>
+    <p>'delete title' {{data.title}}? Y/n</p>
+    <div mat-dialog-actions>
+        <!--<button mat-button (click)="dialogRef.close()">NO</button>-->
+        <button mat-button [mat-dialog-close]="data">SURE</button>
+    </div>
+</ng-template>

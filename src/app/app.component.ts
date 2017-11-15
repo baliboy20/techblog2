@@ -27,6 +27,7 @@ export class AppComponent {
               public snackbar: MatSnackBar) {
     this.sb = snackbar;
     console.log('Snack Bar', this.sb);
+    console.clear();
   }
 
   // doAdd() {

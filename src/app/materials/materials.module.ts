@@ -14,8 +14,10 @@ import {
   MatListModule, MatMenuModule, MatNativeDateModule, MatSelectModule, MatSidenavModule, MatSnackBar,
   MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule,
   MatTooltip,
-  MatTooltipModule
+  MatTooltipModule,
+
 } from '@angular/material';
+import {SnackbarService} from "./shared-services/snackbar.service";
 
 @NgModule({
   imports: [
@@ -79,13 +81,14 @@ import {
     // MatProgressBarModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSnackBarModule,
+    // MatSnackBarModule,
     MatTableModule,
     MatSortModule,
     // MatPaginatorModule,
     MatExpansionModule,
     MatSelectModule,
-  ]
+  ],
+
 })
 
 

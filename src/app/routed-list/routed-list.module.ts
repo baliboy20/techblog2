@@ -5,20 +5,19 @@ import {RouterModule, Routes} from "@angular/router";
 import {MaterialsModule} from "../materials/materials.module";
 import {BlogListComponent} from "../components/blog-list/blog-list.component";
 import {BlogListModule} from "../components/blog-list/blog-list.module";
-import {BlogEditorComponentV1} from "../components/blog-editor-v1/blog-editor.v1.component";
-import {BlogEditorModule} from "../components/blog-editor-v1/blog-editor.v1.module";
-import {BlogFromIdService} from "../components/resolvers/blog-from-id.service";
-import {ZzService} from "../services/zz.service";
+import {BlogEditorComponent} from "../components/blog-editor/blog-editor.component";
+import {BlogEditorModule} from "../components/blog-editor/blog-editor.module";
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
+import {BlogHttpService} from "../services/blog-http/blog-http.service";
 
 const routedRoute: Routes = [
-    {
-        path: 'routedlist', component: RoutedListComponent,
-        children: [
-            {path: 'editor/:id', component: BlogEditorComponentV1, resolve:{blogItem: BlogFromIdService} },
-            {path: 'list', component: BlogListComponent},
-            {path: '', redirectTo: 'list', pathMatch: 'full'}
-        ]
-    }
+    {path: 'routedlist', component: RoutedListComponent,
+        children :[
+            {path:'editor', component: BlogEditorComponent},
+            {path:'list', component:BlogListComponent },
+            {path:'', redirectTo: 'list', pathMatch: 'full'}
+        ]}
 ]
 
 @NgModule({
@@ -28,10 +27,10 @@ const routedRoute: Routes = [
         MaterialsModule,
         BlogListModule,
         BlogEditorModule,
+        HttpClientModule,
     ],
     declarations: [RoutedListComponent],
-    providers: [BlogFromIdService]
+    providers: [BlogHttpService],
 })
 export class RoutedListModule {
 }
-//j;lj;;jk

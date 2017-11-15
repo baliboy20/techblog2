@@ -16,6 +16,7 @@
              matInput
              placeholder="Search ..."
              (keyup)="doSearch($event)"
+             [(ngModel)]="searchStr"
              (click)="onSearchClicked($event)">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>

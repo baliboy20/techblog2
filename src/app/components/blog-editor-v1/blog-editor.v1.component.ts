@@ -13,12 +13,12 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 
 @Component({
     selector: 'app-blog-editor-v1',
-    templateUrl:'./blog-editor.v1.component.html',
+    templateUrl: './blog-editor.v1.component.html',
     styleUrls: ['./blog-editor.v1.component.scss']
 })
 export class BlogEditorComponentV1 implements OnInit {
 
-
+    private = 'Eurasion landmass 1';
     private num = '\u2714';
     private blog = BlogItemFactory.instanceOf();
     @ViewChild('viewscreen') viewscreen: ElementRef;
@@ -34,31 +34,17 @@ export class BlogEditorComponentV1 implements OnInit {
 
     constructor(private markdown: MarkdownService,
                 private rnd: Renderer2,
-                private acr: ActivatedRoute,
                 private router: Router,
                 private service: BlogHttpService,
-
-    ) {
-        console.log('data', this.acr.data)
-
+                private acr: ActivatedRouteSnapshot,
+                private cdr: ChangeDetectorRef) {
+       console.log('Blog editor v1', this.acr);
 
     }
 
-    // constructor(private markdown: MarkdownService,
-    //             private rnd: Renderer2,
-    //             private router: Router,
-    //             private service: BlogHttpService,
-    //             private acr: ActivatedRouteSnapshot,
-    //             private cdr: ChangeDetectorRef) {
-    //     //console.log('Blog editor v1', this.acr);
-    //
-    // }
-
     ngOnInit() {
-
-         this.acr.data
-             .map(a => a.blogItem)
-             .subscribe(a => this.blog = a);
+        const id = this.acr.queryParams['id']
+        this.service.findById(id);
     }
 
     doAddTag(event: { input: HTMLInputElement, value: any }) {
@@ -83,17 +69,16 @@ export class BlogEditorComponentV1 implements OnInit {
         //this.update.emit(this.blog);
     }
 
-    actionInsert(e: Event) {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-        e.preventDefault();
+    textAreaInputEvent(e) {
 
-        // this.insert.emit(this.blog);
     }
 
-    actionCancel(e) {
-        console.log('Action Cancelled');
-        this.router.navigate(['routedlist', 'list']);
+    actionInsert(event: Event) {
+        event.stopImmediatePropagation();
+        event.stopPropagation();
+        event.preventDefault();
+        console.log('do insrt');
+        // this.insert.emit(this.blog);
     }
 
     actionContentChanged(e) {
